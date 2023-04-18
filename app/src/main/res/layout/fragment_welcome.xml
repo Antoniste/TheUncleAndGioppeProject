@@ -22,7 +22,7 @@
                 android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:background="@drawable/db_custom_button_welcome"
-                android:text="LET'S START"
+                android:text="@string/let_s_start"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:layout_marginTop="25dp"
