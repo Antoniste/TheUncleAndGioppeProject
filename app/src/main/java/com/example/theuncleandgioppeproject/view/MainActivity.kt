@@ -9,7 +9,7 @@ import com.example.theuncleandgioppeproject.R
 import com.example.theuncleandgioppeproject.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
