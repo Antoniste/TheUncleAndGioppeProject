@@ -1,4 +1,4 @@
-package com.example.theuncleandgioppeproject.core.network.base.viewModel
+package com.example.theuncleandgioppeproject.viewModel
 
 import com.example.theuncleandgioppeproject.core.network.base.network.PornVideo
 import com.example.theuncleandgioppeproject.core.network.base.network.UncleRetrofit

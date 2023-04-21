@@ -1,4 +1,4 @@
-package com.example.theuncleandgioppeproject.core.network.base.viewModel
+package com.example.theuncleandgioppeproject.viewModel
 
 import androidx.lifecycle.ViewModel
 
