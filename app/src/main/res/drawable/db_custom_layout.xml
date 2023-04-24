@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:width="411dp"
         android:height="500dp">
         <shape android:shape="rectangle">
@@ -11,6 +12,19 @@
         android:height="100dp">
         <shape android:shape="rectangle">
             <solid android:color="@android:color/black" />
+
+    <item android:width="600dp"
+        android:height="500dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/design_default_color_primary_dark">
+            </solid>
+        </shape>
+    </item>
+    <item android:width="410dp"
+        android:height="100dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
+
             <corners android:bottomRightRadius="100dp" />
         </shape>
     </item>
@@ -19,6 +33,7 @@
         android:height="100dp"
         android:top="100dp">
         <shape android:shape="rectangle">
+
             <solid android:color="@android:color/black" />
         </shape>
     </item>
@@ -28,6 +43,17 @@
         android:top="100dp">
         <shape android:shape="rectangle">
             <solid android:color="@color/goldenRod">
+
+            <solid android:color="@android:color/white" />
+        </shape>
+    </item>
+
+    <item android:width="600dp"
+        android:height="200dp"
+        android:top="100dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/design_default_color_primary_dark">
+
             </solid>
             <corners android:radius="100dp" />
         </shape>
