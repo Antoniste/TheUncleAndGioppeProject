@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 class ItemViewModel (
     val name: String?,
     val description: String?,
-    val sourceUrl: String?): ViewModel() {
+    val sourceUrl: String?,
+    val imageKeyIds :Int): ViewModel() {
         fun Any.convert():String{
             return this.toString()
         }

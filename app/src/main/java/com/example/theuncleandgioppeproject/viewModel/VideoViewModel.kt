@@ -11,7 +11,7 @@ class VideoViewModel: ViewModel() {
     get(){
         return repository.getPornVideo().asLiveData().map {
            pornVideo -> pornVideo.content.map {
-               ItemViewModel(it.name,it.description,it.sourceUrl)
+               ItemViewModel(it.name,it.description,it.sourceUrl,it.producerKeyId)
         }
         }
             }
