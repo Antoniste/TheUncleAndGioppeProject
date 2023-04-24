@@ -34,33 +34,33 @@
 
             <EditText
                 android:id="@+id/editEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="80dp"
                 android:background="@drawable/db_custom_button_welcome"
                 android:backgroundTint="@color/white"
-                android:ems="10"
                 android:hint="   Email"
                 android:inputType="textEmailAddress"
-                android:paddingStart="10dp"
-                android:gravity="center"
+                android:padding="5dp"
                 android:textColor="@color/black"
                 android:textColorHint="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAccedi" />
+                app:layout_constraintTop_toBottomOf="@id/tvAccedi"
+                android:autofillHints="emailAddress" />
 
             <EditText
                 android:id="@+id/editPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="80dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="80dp"
+                android:padding="5dp"
                 android:background="@drawable/db_custom_button_welcome"
                 android:backgroundTint="@color/white"
-                android:ems="10"
-                android:gravity="center"
                 android:hint="    Enter your password"
                 android:inputType="textPassword"
                 android:paddingStart="10dp"
@@ -69,7 +69,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editEmail"
-                app:passwordToggleEnabled="true" />
+                app:passwordToggleEnabled="true"
+                android:autofillHints="password" />
 
             <CheckBox
                 android:id="@+id/checkbox_ricorda"
@@ -91,6 +92,7 @@
                 android:background="@drawable/db_custom_button_welcome"
                 android:backgroundTint="@color/goldenRod"
                 android:enabled="false"
+                android:padding="5dp"
                 android:text="LOGIN"
                 android:textSize="17sp"
                 android:textStyle="bold"
@@ -99,6 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@id/checkbox_ricorda" />
 
             <Button
+                android:padding="5dp"
                 android:id="@+id/butSig"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
@@ -108,7 +111,7 @@
                 android:text="REGISTRATI"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                app:backgroundTint="@null"
+                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
