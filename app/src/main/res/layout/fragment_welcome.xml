@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@id/guideline">
 
                 <Button
-                    android:id="@+id/butSig"
+                    android:id="@+id/butWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/db_custom_button_welcome"
@@ -60,36 +60,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".WelcomeFragment">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="420dp"
-            android:background="@drawable/db_custom_layout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/butSig"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:background="@drawable/db_custom_button_welcome"
-                android:text="LET'S START"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:layout_marginTop="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
