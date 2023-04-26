@@ -20,4 +20,5 @@
     <string name="error_camera">Camera access denied</string>
     <string name="error_generic">Something went wrong. Please try again.</string>
     <string name="error_generic_code">Something went wrong. Please try again.\nError: %s</string>
+    <string name="description">Raccomandati per te</string>
 </resources>

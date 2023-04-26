@@ -3,47 +3,47 @@ package com.example.theuncleandgioppeproject.core.network.base.network
 import com.google.gson.annotations.SerializedName
 
 data class PornVideo(
-    @SerializedName("name")
-    val name: String?,
-    @SerializedName("description")
-    val description: String?,
-    @SerializedName("sourceUrl")
-    val sourceUrl: String?,
-    @SerializedName("produceKeyId")
-    val produceKeyId: Int?,
-    @SerializedName("imageKeyIds")
-    val imageKeyIds: List<Long>?,
-    @SerializedName("actorKeyIds")
-    val actorKeyIds: Int?,
-    @SerializedName("genreKeyIds")
-    val genreKeyIds: List<Long>?,
-    @SerializedName("downloads")
-    val downloads: List<HashMap<String, Downloads>>)
+    val content: List<Content>,
+    val statusCode: Int,
+    val statusMessage: String
+) {
+    data class Content(
+        val actorKeyIds: List<Long>,
+        val description: String,
+        val downloads: List<Download>,
+        val entryType: Int,
+        val genreKeyIds: List<Long>,
+        val imageKeyIds: List<Long>,
+        val key: Key,
+        val name: String,
+        val pornType: Int,
+        val producerKeyId: Int,
+        val publishDate: Long,
+        val sourceUrl: String
+    ) {
+        data class Download(
+            val downloadType: Int,
+            val entryType: Int,
+            val fileSize: Int,
+            val hosterKeyId: Long,
+            val key: Key,
+            val url: String
+        ) {
+            data class Key(
+                val id: Long,
+                val kind: String,
+                val parentKey: ParentKey
+            ) {
+                data class ParentKey(
+                    val id: Long,
+                    val kind: String
+                )
+            }
+        }
 
-
-data class Downloads(
-    @SerializedName("key")
-    val key:Key?,
-    @SerializedName("fileSize")
-    val filesize: Int?,
-    @SerializedName("hosterKeyId")
-    val hosterKeyId: Long?,
-
-
-    )
-
-data class Key(
-    @SerializedName("parentKey")
-    val parentKey: ParentKey?,
-    @SerializedName("kind")
-    val kind: String?,
-    @SerializedName("id")
-    val id: Long?,
-)
-
-data class ParentKey(
-    @SerializedName("kind")
-    val kind: String?,
-    @SerializedName("id")
-    val id: Long?,
-)
+        data class Key(
+            val id: Long,
+            val kind: String
+        )
+    }
+}

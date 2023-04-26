@@ -18,6 +18,7 @@ class UncleRetrofit {
     private lateinit var apiService: ApiService
     private val BASE_URL =
         "https://steppschuh-json-porn-v1.p.rapidapi.com/"
+
     fun getRetrofitInstance(): ApiService {
         if (!::apiService.isInitialized) {
             val retrofit = Retrofit.Builder()
@@ -34,7 +35,7 @@ class UncleRetrofit {
 class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response = chain.proceed(
         chain.request().newBuilder().addHeader("X-RapidAPI-Key", Constants.API_KEY)
-            .addHeader("X-RapidAPI-Host","steppschuh-json-porn-v1.p.rapidapi.com").build()
+            .addHeader("X-RapidAPI-Host", "steppschuh-json-porn-v1.p.rapidapi.com").build()
     )
 
 }
