@@ -8,6 +8,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.theuncleandgioppeproject.R
 import com.example.theuncleandgioppeproject.databinding.ActivityMainBinding
 
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
@@ -17,12 +21,9 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
         navController = navHostFragment.navController
-        setupActionBarWithNavController(navController)
-    }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    //gioco di colori parte a sinistra
+
+    //parte sotto la nera
+    <item
+        android:width="411dp"
+        android:height="175dp"
+        android:top="766dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners android:topLeftRadius="100dp" />
+        </shape>
+    </item>
+    //parte sopra
+    <item
+        android:width="411dp"
+        android:height="225dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners android:bottomRightRadius="100dp" />
+        </shape>
+    </item>
+    //sopra la parte nera
+    <item
+        android:width="205.5dp"
+        android:height="100dp"
+        android:top="223.5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+            <corners android:bottomRightRadius="100dp" />
+        </shape>
+    </item>
+    //sotto la parte nera
+    <item
+        android:width="105dp"
+        android:height="100dp"
+        android:top="683.5dp"
+        android:left="306dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/black" />
+        </shape>
+    </item>
+    <item
+        android:width="411dp"
+        android:height="541dp"
+        android:top="224.5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/goldenRod"></solid>
+            <corners
+                android:bottomLeftRadius="100dp"
+                android:bottomRightRadius="100dp"
+                android:topLeftRadius="100dp"
+                android:topRightRadius="100dp" />
+        </shape>
+    </item>
+
+
+</layer-list>
