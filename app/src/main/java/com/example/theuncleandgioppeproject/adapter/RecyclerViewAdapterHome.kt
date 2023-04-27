@@ -1,5 +1,6 @@
 package com.example.theuncleandgioppeproject.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -34,6 +35,7 @@ class RecyclerViewAdapterHome : DataBoundListAdapter<ViewModelCardHome>(
     override fun bind(binding: ViewDataBinding, item: ViewModelCardHome) {
         when (binding) {
             is  ItemVideoBinding-> {
+                binding.imageHard.setImageURI(item.nameUrl as Uri)
                 binding.nameItem = item
             }
         }

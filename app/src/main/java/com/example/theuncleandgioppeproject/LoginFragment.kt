@@ -19,9 +19,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private lateinit var binding: FragmentLoginBinding
-     private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
 
 
     override fun onCreateView(
