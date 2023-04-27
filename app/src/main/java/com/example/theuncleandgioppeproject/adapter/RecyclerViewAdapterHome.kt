@@ -18,7 +18,7 @@ class RecyclerViewAdapterHome : DataBoundListAdapter<ViewModelCardHome>(
         }
 
         override fun areContentsTheSame(old: ViewModelCardHome, aNew: ViewModelCardHome): Boolean {
-            return old.descrizione == aNew.descrizione
+            return old.description == aNew.description
         }
     }
 ) {

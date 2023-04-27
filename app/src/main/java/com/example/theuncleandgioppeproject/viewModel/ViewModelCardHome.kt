@@ -1,3 +1,5 @@
 package com.example.theuncleandgioppeproject.viewModel
 
-data class ViewModelCardHome (var urlVideo:String , var urlImage:String , var descrizione:String)
+import com.example.theuncleandgioppeproject.core.network.base.network.MarvelCharacterResponse
+
+data class ViewModelCardHome(var description:String, var name:String, var urls: List<MarvelCharacterResponse.Data.Result.Url>)

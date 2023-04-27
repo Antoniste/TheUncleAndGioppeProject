@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("/porn/")
+    @GET("/v1/public/characters")
     suspend fun getResponse(
-    ): Response<PornVideo>
+    ): Response<MarvelCharacterResponse>
 }

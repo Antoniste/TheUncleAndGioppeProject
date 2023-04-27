@@ -46,13 +46,13 @@ object ApiModule{
             val url =chain.request()
                 .url
                 .newBuilder()
-                .addQueryParameter("X-RapidAPI-Key", API_KEY)
+                .addQueryParameter("API Key", API_KEY)
                 .build()
 
             val request =chain.request()
                 .newBuilder()
                 .url(url)
-                .addHeader("X-RapidAPI-Host","steppschuh-json-porn-v1.p.rapidapi.com")
+                .addHeader("Host","uncleandgioppe.marvel.com")
                 .build()
             return@Interceptor chain.proceed(request)
         }
