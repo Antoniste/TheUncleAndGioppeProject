@@ -2,7 +2,6 @@ package com.example.theuncleandgioppeproject.repository
 
 
 import com.example.theuncleandgioppeproject.core.network.base.network.ApiService
-import com.example.theuncleandgioppeproject.core.network.base.network.MarvelCharacterResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

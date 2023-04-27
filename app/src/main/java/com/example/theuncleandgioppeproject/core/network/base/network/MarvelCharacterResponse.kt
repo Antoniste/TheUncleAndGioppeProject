@@ -3,73 +3,93 @@ package com.example.theuncleandgioppeproject.core.network.base.network
 data class MarvelCharacterResponse(
     val attributionHTML: String,
     val attributionText: String,
-    val code: String,
+    val code: Int,
     val copyright: String,
     val `data`: Data,
-    val eTag: String,
+    val etag: String,
     val status: String
 ) {
     data class Data(
-        val count: String,
-        val limit: String,
-        val offset: String,
+        val count: Int,
+        val limit: Int,
+        val offset: Int,
         val results: List<Result>,
-        val total: String
+        val total: Int
     ) {
         data class Result(
+            val characters: Characters,
             val comics: Comics,
+            val creators: Creators,
             val description: String,
+            val endYear: Int,
             val events: Events,
-            val id: String,
+            val id: Int,
             val modified: String,
-            val name: String,
+            val next: Next,
+            val previous: Any,
+            val rating: String,
             val resourceURI: String,
-            val series: Series,
+            val startYear: Int,
             val stories: Stories,
             val thumbnail: Thumbnail,
+            val title: String,
+            val type: String,
             val urls: List<Url>
         ) {
-            data class Comics(
-                val available: String,
+            data class Characters(
+                val available: Int,
                 val collectionURI: String,
                 val items: List<Item>,
-                val returned: String
+                val returned: Int
             ) {
                 data class Item(
                     val name: String,
                     val resourceURI: String
+                )
+            }
+
+            data class Comics(
+                val available: Int,
+                val collectionURI: String,
+                val items: List<Item>,
+                val returned: Int
+            ) {
+                data class Item(
+                    val name: String,
+                    val resourceURI: String
+                )
+            }
+
+            data class Creators(
+                val available: Int,
+                val collectionURI: String,
+                val items: List<Item>,
+                val returned: Int
+            ) {
+                data class Item(
+                    val name: String,
+                    val resourceURI: String,
+                    val role: String
                 )
             }
 
             data class Events(
-                val available: String,
+                val available: Int,
                 val collectionURI: String,
-                val items: List<Item>,
-                val returned: String
-            ) {
-                data class Item(
-                    val name: String,
-                    val resourceURI: String
-                )
-            }
+                val items: List<Any>,
+                val returned: Int
+            )
 
-            data class Series(
-                val available: String,
-                val collectionURI: String,
-                val items: List<Item>,
-                val returned: String
-            ) {
-                data class Item(
-                    val name: String,
-                    val resourceURI: String
-                )
-            }
+            data class Next(
+                val name: String,
+                val resourceURI: String
+            )
 
             data class Stories(
-                val available: String,
+                val available: Int,
                 val collectionURI: String,
                 val items: List<Item>,
-                val returned: String
+                val returned: Int
             ) {
                 data class Item(
                     val name: String,
