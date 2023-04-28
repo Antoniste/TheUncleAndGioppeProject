@@ -54,7 +54,7 @@ class SignUpFragment : Fragment() {
                 val keyboard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 keyboard.hideSoftInputFromWindow(binding.root.windowToken, 0)
                 lifecycleScope.launch {
-                    loginViewModel.insertUser(UserPorn(binding.editEmail.text.toString(), binding.editPassword.text.toString()))
+                    loginViewModel.insertUser(UserPorn(binding.editEmail.text.toString(), binding.editPassword.text.toString(),false))
                 }
                 findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
             }

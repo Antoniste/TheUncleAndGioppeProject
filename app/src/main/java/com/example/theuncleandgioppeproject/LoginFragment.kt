@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -53,14 +53,16 @@ class LoginFragment : Fragment() {
         binding.butLogin.setOnClickListener {
             val email = binding.editEmail.text
             val password = binding.editPassword.text
-            val keyboard =
-                requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val keyboard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             keyboard.hideSoftInputFromWindow(binding.root.windowToken, 0)
-            lifecycleScope.launch {
-                loginViewModel.select("$email", "$password")
+            loginViewModel.select("$email", "$password")
+            loginViewModel.userLive.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    loginViewModel.update(true, it.idUser)
+                    findNavController().navigate(R.id.nav_graph_second_part)
+                }
             }
-            findNavController().navigate(R.id.nav_graph_second_part)
-          }
+         }
        }
     }
 

@@ -8,15 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
 import com.example.theuncleandgioppeproject.databinding.FragmentHomeBinding
 import com.example.theuncleandgioppeproject.viewModel.HardViewModel
+import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapterRe: RecyclerViewAdapterHome
+    private val loginViewModel: LoginViewModel by activityViewModels()
     private val hardViewModel: HardViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -46,6 +49,11 @@ class HomeFragment : Fragment() {
             binding.recy.apply {
                 adapter = adapterRe
             }
+        }
+        binding.logout.setOnClickListener{
+            loginViewModel.update(false,loginViewModel.userLive.value!!.idUser)
+            loginViewModel.logout()
+            findNavController().navigate(R.id.nav_graph)
         }
 
     }
