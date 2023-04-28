@@ -16,12 +16,23 @@ class HardViewModel @Inject constructor(private var repository: UncleRepository)
 
     var events=MutableLiveData<List<ViewModelCardHome>>()
 
+    fun getSearch( s: String){
+        viewModelScope.launch {
+            val r=repository.getMarvelMovies().asLiveData().map {  response->
+                response.data.results.map {
+                    ViewModelCardHome(it.title)
+                }
+            }
+            events= r as MutableLiveData<List<ViewModelCardHome>>
+        }
+          }
+
 
     fun getData() {
         viewModelScope.launch {
             val r=repository.getMarvelMovies().asLiveData().map {  response->
                 response.data.results.map {
-                    ViewModelCardHome(it.title,it.resourceURI)
+                    ViewModelCardHome(it.title)
                 }
             }
             events= r as MutableLiveData<List<ViewModelCardHome>>

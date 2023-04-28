@@ -90,7 +90,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="60dp"
                 android:background="@drawable/db_custom_button_welcome"
-                android:backgroundTint="@color/goldenRod"
+                android:backgroundTint="@color/red"
                 android:enabled="false"
                 android:padding="5dp"
                 android:text="LOGIN"

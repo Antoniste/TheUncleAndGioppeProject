@@ -46,7 +46,7 @@
         android:height="541dp"
         android:top="224.5dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/goldenRod"></solid>
+            <solid android:color="@color/red"></solid>
             <corners
                 android:bottomLeftRadius="100dp"
                 android:bottomRightRadius="100dp"

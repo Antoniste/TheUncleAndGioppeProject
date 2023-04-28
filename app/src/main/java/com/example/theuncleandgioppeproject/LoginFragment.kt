@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.databinding.FragmentLoginBinding
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
@@ -57,6 +59,7 @@ class LoginFragment : Fragment() {
             lifecycleScope.launch {
                 loginViewModel.select("$email", "$password")
             }
+            findNavController().navigate(R.id.nav_graph_second_part)
           }
        }
     }

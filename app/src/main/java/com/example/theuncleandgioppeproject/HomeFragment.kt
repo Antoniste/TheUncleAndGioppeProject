@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
 import com.example.theuncleandgioppeproject.databinding.FragmentHomeBinding
@@ -32,7 +33,9 @@ class HomeFragment : Fragment() {
         hardViewModel.getData()
         adapterRe = RecyclerViewAdapterHome()
 
-
+       /* binding.editSearch.doOnTextChanged { text, _, _, _ ->
+            hardViewModel.
+        }*/
 
         hardViewModel.events.observe(viewLifecycleOwner) {
             adapterRe.apply {
