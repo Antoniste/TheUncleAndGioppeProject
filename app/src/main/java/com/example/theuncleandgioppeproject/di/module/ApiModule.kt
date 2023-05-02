@@ -46,13 +46,11 @@ object ApiModule{
             val url =chain.request()
                 .url
                 .newBuilder()
-                .addQueryParameter("API Key", API_KEY)
                 .build()
 
             val request =chain.request()
                 .newBuilder()
                 .url(url)
-                .addHeader("Host","uncleandgioppe.marvel.com")
                 .build()
             return@Interceptor chain.proceed(request)
         }

@@ -13,10 +13,22 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor( var repository: PornRepository) : ViewModel() {
 
-    var userLive = MutableLiveData<UserPorn>()
-    suspend fun select(email: String, password: String) {
+    var userLive = MutableLiveData<UserPorn?>()
+     fun select(email: String, password: String) {
+         viewModelScope.launch {
         userLive.value = repository.select(email, password)
+        }
+     }
+    fun update(boolLog:Boolean,id:Int){
+        viewModelScope.launch{
+            repository.update(boolLog,id)
+        }
     }
+    fun logout(){
+        userLive.value=null
+    }
+
+
     fun insertUser(user: UserPorn)=
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertUser(user)

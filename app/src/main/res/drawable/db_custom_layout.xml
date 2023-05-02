@@ -3,7 +3,7 @@
     <item android:width="411dp"
         android:height="500dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/goldenRod">
+            <solid android:color="@color/red">
             </solid>
         </shape>
     </item>
@@ -16,7 +16,7 @@
     <item android:width="600dp"
         android:height="500dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/goldenRod">
+            <solid android:color="@color/red">
             </solid>
         </shape>
     </item>
@@ -41,7 +41,7 @@
         android:height="200dp"
         android:top="100dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/goldenRod"/>
+            <solid android:color="@color/red"/>
         </shape>
     </item>
 
@@ -49,7 +49,7 @@
         android:height="200dp"
         android:top="100dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/goldenRod">
+            <solid android:color="@color/red">
             </solid>
             <corners android:radius="100dp" />
         </shape>

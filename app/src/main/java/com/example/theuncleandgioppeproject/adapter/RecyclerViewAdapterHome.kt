@@ -1,7 +1,9 @@
 package com.example.theuncleandgioppeproject.adapter
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
@@ -35,6 +37,7 @@ class RecyclerViewAdapterHome : DataBoundListAdapter<ViewModelCardHome>(
         when (binding) {
             is  ItemVideoBinding-> {
                 binding.nameItem = item
+
             }
         }
     }
