@@ -23,6 +23,7 @@ class RecyclerViewAdapterHome : DataBoundListAdapter<ViewModelCardHome>(
             return old.description == aNew.description
         }
     }
+
 ) {
     override fun createBinding(parent: ViewGroup, viewType: Int): ViewDataBinding {
         return DataBindingUtil.inflate(

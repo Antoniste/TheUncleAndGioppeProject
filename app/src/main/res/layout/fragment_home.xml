@@ -14,23 +14,27 @@
             android:layout_width="100dp"
             android:layout_height="130dp"
             android:layout_marginStart="24dp"
+            android:clickable="true"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/_58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent"
             app:layout_constraintEnd_toStartOf="@+id/ironManMaterialButton"
             app:layout_constraintHorizontal_bias="0.411"
             app:layout_constraintStart_toEndOf="@+id/imageButton2"
-            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true" />
 
         <ImageButton
             android:id="@+id/ironManMaterialButton"
             android:layout_width="100dp"
             android:layout_height="130dp"
+            android:clickable="true"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="28dp"
             android:background="@drawable/ironman_paper_face_masks_01"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvtRacc">
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true">
 
         </ImageButton>
 
@@ -122,9 +126,11 @@
             android:layout_height="130dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
+            android:clickable="true"
             android:background="@drawable/spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvtRacc">
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true">
 
         </ImageButton>
 
