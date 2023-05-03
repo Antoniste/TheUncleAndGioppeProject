@@ -30,7 +30,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding= FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -58,7 +57,7 @@ class LoginFragment : Fragment() {
             loginViewModel.select("$email", "$password")
             loginViewModel.userLive.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    loginViewModel.update(true, it.idUser)
+                    loginViewModel.update()
                     findNavController().navigate(R.id.nav_graph_second_part)
                 }
             }

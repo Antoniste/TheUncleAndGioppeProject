@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hardViewModel.getUser()
         hardViewModel.getData()
         adapterRe = RecyclerViewAdapterHome()
 
@@ -50,8 +51,10 @@ class HomeFragment : Fragment() {
                 adapter = adapterRe
             }
         }
+        hardViewModel.userName.observe(viewLifecycleOwner){
+            binding.nameHome.text=it
+        }
         binding.logout.setOnClickListener{
-            loginViewModel.update(false,loginViewModel.userLive.value!!.idUser)
             loginViewModel.logout()
             findNavController().navigate(R.id.nav_graph)
         }
