@@ -18,6 +18,9 @@ class PreferencesManager(context: Context) {
     private val spLoginKey = context.getString(
         R.string.sp_login_key
     )
+    private  val spUserHome = context.getString(
+        R.string.sp_user_name_home
+    )
 
     var isUserLogged: Boolean = false
         get() = prefs.getBoolean(spLoginKey, false)
@@ -26,5 +29,13 @@ class PreferencesManager(context: Context) {
                 putBoolean(spLoginKey, value)
             }
             field = value
+        }
+    var userName: String? = null
+        get() = prefs.getString(spUserHome,"")
+        set(value){
+            prefs.edit{
+                putString(spUserHome,value)
+            }
+            field =value
         }
 }

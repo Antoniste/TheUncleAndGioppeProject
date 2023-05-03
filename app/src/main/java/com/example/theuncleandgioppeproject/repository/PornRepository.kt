@@ -12,7 +12,7 @@ class PornRepository @Inject constructor(private var dao: DaoPorn) {
         dao.insert(user)
     }
 
-    suspend fun update(log:Boolean,id:Int) {
+   /* suspend fun update(log:Boolean,id:Int) {
         dao.update(log,id)
-    }
+    }*/
 }

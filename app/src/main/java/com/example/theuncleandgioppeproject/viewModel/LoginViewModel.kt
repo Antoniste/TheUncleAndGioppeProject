@@ -19,6 +19,7 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
         get() = MyApp.INSTANCE.preferencesManager
 
     var logShare=MutableLiveData<Boolean>()
+    var nameShare=MutableLiveData<String>()
 
     var userLive = MutableLiveData<UserPorn?>()
      fun select(email: String, password: String) {
@@ -27,13 +28,16 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
         }
      }
         fun update(){
+            preferencesManager.userName= userLive.value?.name
             preferencesManager.isUserLogged=true
+            nameShare.value=preferencesManager.userName
             logShare.value=preferencesManager.isUserLogged
         }
     fun logout(){
         userLive.value=null
         preferencesManager.isUserLogged=false
         logShare.value=preferencesManager.isUserLogged
+        preferencesManager.userName=""
     }
 
 

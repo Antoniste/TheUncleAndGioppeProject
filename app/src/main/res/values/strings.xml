@@ -25,5 +25,6 @@
     <!-- share Prefe -->
      <string name="sp_key">spKey</string>
      <string name="sp_login_key">loginSp</string>
+    <string name="sp_user_name_home">userNameHome</string>
 
 </resources>
