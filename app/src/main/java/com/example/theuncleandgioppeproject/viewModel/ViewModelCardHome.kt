@@ -1,3 +1,5 @@
 package com.example.theuncleandgioppeproject.viewModel
 
-data class ViewModelCardHome(var description:String)
+import androidx.lifecycle.ViewModel
+
+data class ViewModelCardHome(var description:String?, val name:String?): ViewModel()
