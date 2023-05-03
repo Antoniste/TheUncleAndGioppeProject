@@ -13,7 +13,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-
     <string name="error_session_expired">Your session expired. Please login again.</string>
     <string name="error_no_network">It seems you are not connected to a network. Check the connectivity of your device and retry.</string>
     <string name="error_credentials">Credentials not correct. Retry.</string>
@@ -22,4 +21,9 @@
     <string name="error_generic_code">Something went wrong. Please try again.\nError: %s</string>
     <string name="description">Raccomandati per te</string>
     <string name="let_s_start">LET\'S START</string>
+
+    <!-- share Prefe -->
+     <string name="sp_key">spKey</string>
+     <string name="sp_login_key">loginSp</string>
+
 </resources>

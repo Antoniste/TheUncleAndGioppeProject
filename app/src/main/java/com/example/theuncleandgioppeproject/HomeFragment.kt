@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
             }
         }
         binding.logout.setOnClickListener{
-            loginViewModel.update(false,loginViewModel.userLive.value!!.idUser)
             loginViewModel.logout()
             findNavController().navigate(R.id.nav_graph)
         }
