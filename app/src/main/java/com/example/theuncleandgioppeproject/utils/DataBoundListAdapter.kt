@@ -12,8 +12,9 @@ abstract class DataBoundListAdapter<T>(
     AsyncDifferConfig.Builder<T>(diffCallback)
         .build()
 ) {
-
-
+    interface onItemClickListener{
+        fun onClick(name:String)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBoundViewHolder {
         val binding = createBinding(parent, viewType)
         return DataBoundViewHolder(binding)

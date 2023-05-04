@@ -11,6 +11,7 @@ import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterImage
 import com.example.theuncleandgioppeproject.databinding.FragmentHomeBinding
 import com.example.theuncleandgioppeproject.model.ImageModel
+import com.example.theuncleandgioppeproject.utils.DataBoundListAdapter
 import com.example.theuncleandgioppeproject.viewModel.HardViewModel
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,13 +37,29 @@ class HomeFragment : Fragment() {
         hardViewModel.getUser()
         adapterRe = RecyclerViewAdapterHome()
         val imageList =ArrayList<ImageModel>()
-        imageList.add(ImageModel(R.drawable.ironman_paper_face_masks_01))
-        imageList.add(ImageModel(R.drawable.spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts))
-        imageList.add(ImageModel(R.drawable._58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent))
+        imageList.add(ImageModel(R.drawable.ironman_paper_face_masks_01,"iron man"))
+        imageList.add(ImageModel(R.drawable.spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts,"hulk"))
+        imageList.add(ImageModel(R.drawable._58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent,"thanos"))
        /* binding.editSearch.doOnTextChanged { text, _, _, _ ->
             hardViewModel.
         }*/
-        adapterImage= RecyclerViewAdapterImage()
+        adapterImage= RecyclerViewAdapterImage(object : DataBoundListAdapter.onItemClickListener {
+            override fun onClick(name: String) {
+                hardViewModel.getIronManData(name)
+                hardViewModel.event.observe(viewLifecycleOwner) {
+                    adapterRe.apply {
+                        it?.let {
+                            it.forEach {
+                                submitList(it)
+                            }
+                        }
+                        notifyDataSetChanged()
+                    }
+                    binding.recy.apply {
+                        adapter = adapterRe
+                    }
+            }}
+        })
         adapterImage.apply {
             submitList(imageList)
         }
