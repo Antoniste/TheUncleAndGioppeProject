@@ -17,7 +17,6 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
 
     val preferencesManager: PreferencesManager
         get() = MyApp.INSTANCE.preferencesManager
-
     var logShare=MutableLiveData<Boolean>()
     var nameShare=MutableLiveData<String>()
 

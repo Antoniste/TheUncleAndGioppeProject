@@ -25,26 +25,6 @@ class HardViewModel @Inject constructor(private var repository: UncleRepository)
         userName.value=preferencesManager.userName
     }
 
-    /*    fun getSearch( s: String){
-        viewModelScope.launch {
-            val r=repository.getMarvelMovies().asLiveData().map {  response->
-                response.data.results.map {
-                    ViewModelCardHome(it.title)
-                }
-            }
-            events= r as MutableLiveData<List<ViewModelCardHome>>
-       }
-    } */
-    /*fun getData() {
-        viewModelScope.launch {
-            val r=repository.getMarvelMovies().asLiveData().map {  response->
-                response.data.results.map {
-                    ViewModelCardHome(it.title)
-                }
-            }
-
-        }
-    }*/
     fun getIronManData(c: String) {
         viewModelScope.launch {
             event = repository.getMarvelCharacters(c).asLiveData().map { response ->
