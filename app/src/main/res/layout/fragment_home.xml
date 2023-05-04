@@ -2,11 +2,41 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context=".HomeFragment">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="24dp"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/_58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent"
+            app:layout_constraintEnd_toStartOf="@+id/ironManMaterialButton"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toEndOf="@+id/imageButton2"
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true" />
+
+        <ImageButton
+            android:id="@+id/ironManMaterialButton"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/ironman_paper_face_masks_01"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true">
+
+        </ImageButton>
 
         <ImageView
             android:id="@+id/CircleAvatar"
@@ -70,7 +100,8 @@
             app:layout_constraintTop_toBottomOf="@id/CircleAvatar"
             >
         </TextView>
-     <!--   <EditText
+
+        <!--   <EditText
             android:id="@+id/editSearch"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -89,17 +120,31 @@
             app:layout_constraintTop_toBottomOf="@id/tvtLet"
              />-->
 
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="90dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:background="@drawable/spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvtRacc"
+            android:focusable="true">
+
+        </ImageButton>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
+            android:layout_height="430dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvtRacc">
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

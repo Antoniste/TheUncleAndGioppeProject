@@ -1,9 +1,7 @@
 package com.example.theuncleandgioppeproject.di.module
 
-import androidx.compose.runtime.internal.composableLambda
 import com.example.theuncleandgioppeproject.BuildConfig
 import com.example.theuncleandgioppeproject.core.network.base.network.ApiService
-import com.example.theuncleandgioppeproject.core.network.base.network.Constants.API_KEY
 import com.example.theuncleandgioppeproject.core.network.base.network.Constants.BASE_URL
 import com.example.theuncleandgioppeproject.core.network.base.network.Constants.NETWORK_TIMEOUT
 import com.google.gson.Gson

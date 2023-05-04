@@ -1,6 +1,6 @@
 package com.example.theuncleandgioppeproject.core.network.base.network
 
-data class MarvelCharacterResponse(
+data class MarvelSeriesResponse(
     val attributionHTML: String,
     val attributionText: String,
     val code: Int,
@@ -17,18 +17,37 @@ data class MarvelCharacterResponse(
         val total: Int
     ) {
         data class Result(
+            val characters: Characters,
             val comics: Comics,
+            val creators: Creators,
             val description: String,
+            val endYear: Int,
             val events: Events,
             val id: Int,
             val modified: String,
-            val name: String,
+            val next: Next,
+            val previous: Any,
+            val rating: String,
             val resourceURI: String,
-            val series: Series,
+            val startYear: Int,
             val stories: Stories,
             val thumbnail: Thumbnail,
+            val title: String,
+            val type: String,
             val urls: List<Url>
         ) {
+            data class Characters(
+                val available: Int,
+                val collectionURI: String,
+                val items: List<Item>,
+                val returned: Int
+            ) {
+                data class Item(
+                    val name: String,
+                    val resourceURI: String
+                )
+            }
+
             data class Comics(
                 val available: Int,
                 val collectionURI: String,
@@ -41,7 +60,7 @@ data class MarvelCharacterResponse(
                 )
             }
 
-            data class Events(
+            data class Creators(
                 val available: Int,
                 val collectionURI: String,
                 val items: List<Item>,
@@ -49,21 +68,22 @@ data class MarvelCharacterResponse(
             ) {
                 data class Item(
                     val name: String,
-                    val resourceURI: String
+                    val resourceURI: String,
+                    val role: String
                 )
             }
 
-            data class Series(
+            data class Events(
                 val available: Int,
                 val collectionURI: String,
-                val items: List<Item>,
+                val items: List<String>,
                 val returned: Int
-            ) {
-                data class Item(
-                    val name: String,
-                    val resourceURI: String
-                )
-            }
+            )
+
+            data class Next(
+                val name: String,
+                val resourceURI: String
+            )
 
             data class Stories(
                 val available: Int,
