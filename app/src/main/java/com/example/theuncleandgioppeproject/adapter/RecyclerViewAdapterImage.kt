@@ -11,7 +11,7 @@ import com.example.theuncleandgioppeproject.databinding.CarouselItemBinding
 import com.example.theuncleandgioppeproject.model.ImageModel
 import com.example.theuncleandgioppeproject.utils.DataBoundListAdapter
 
-class RecyclerViewAdapterImage : DataBoundListAdapter<ImageModel>(
+class RecyclerViewAdapterImage(private var itemClickListener: onItemClickListener) : DataBoundListAdapter<ImageModel>(
         diffCallback = object : DiffUtil.ItemCallback<ImageModel>() {
 
             override fun areItemsTheSame(old: ImageModel, aNew: ImageModel): Boolean {
@@ -37,6 +37,9 @@ class RecyclerViewAdapterImage : DataBoundListAdapter<ImageModel>(
             when (binding) {
                 is CarouselItemBinding -> {
                 Glide.with(binding.imageRecyItem).load(item.Image).into(binding.imageRecyItem)
+                    binding.imageRecyItem.setOnClickListener {
+                        itemClickListener.onClick(item.name)
+                    }
                 }
             }
         }

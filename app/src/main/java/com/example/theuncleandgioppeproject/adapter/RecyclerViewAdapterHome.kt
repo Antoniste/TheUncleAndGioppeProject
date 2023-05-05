@@ -12,7 +12,7 @@ import com.example.theuncleandgioppeproject.databinding.ItemVideoBinding
 import com.example.theuncleandgioppeproject.utils.DataBoundListAdapter
 import com.example.theuncleandgioppeproject.viewModel.ViewModelCardHome
 
-class RecyclerViewAdapterHome : DataBoundListAdapter<ViewModelCardHome>(
+class RecyclerViewAdapterHome() : DataBoundListAdapter<ViewModelCardHome>(
     diffCallback = object : DiffUtil.ItemCallback<ViewModelCardHome>() {
 
         override fun areItemsTheSame(old: ViewModelCardHome, aNew: ViewModelCardHome): Boolean {
