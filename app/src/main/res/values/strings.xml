@@ -26,5 +26,7 @@
      <string name="sp_key">spKey</string>
      <string name="sp_login_key">loginSp</string>
     <string name="sp_user_name_home">userNameHome</string>
-
+    <string name="sp_credential_login">credentialUser</string>
+    <string name="sp_user_email_home">userNameEmail</string>
+    <string name="sp_user_password_home">userNamePassword</string>
 </resources>

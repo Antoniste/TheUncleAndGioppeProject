@@ -26,7 +26,13 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
         userLive.value = repository.select(email, password)
         }
      }
+    fun changeCredential(boolean: Boolean){
+            preferencesManager.credentialUser=boolean
+    }
         fun update(){
+
+            preferencesManager.userPassword=userLive.value?.password
+            preferencesManager.userEmail= userLive.value?.email
             preferencesManager.userName= userLive.value?.name
             preferencesManager.isUserLogged=true
             nameShare.value=preferencesManager.userName
