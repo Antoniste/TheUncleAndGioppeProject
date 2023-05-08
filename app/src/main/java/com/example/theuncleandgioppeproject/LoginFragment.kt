@@ -2,6 +2,7 @@ package com.example.theuncleandgioppeproject
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,17 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(loginViewModel.preferencesManager.credentialUser){
+            loginViewModel.preferencesManager.userEmail.let {
+                binding.editEmail.setText(it)
+            }
+            loginViewModel.preferencesManager.userPassword.let {
+                binding.editPassword.setText(it)
+            }
+            binding.checkboxRicorda.isChecked=loginViewModel.preferencesManager.credentialUser
+        }
+
+
         binding.butSig.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
@@ -49,6 +61,9 @@ class LoginFragment : Fragment() {
                 text.toString().isNotEmpty() && binding.editEmail.text.toString()
                     .isNotEmpty()
         }
+        if (binding.butLogin.text.isNotEmpty() && binding.editPassword.text.isNotEmpty()){
+            binding.butLogin.isEnabled=true
+        }
         binding.butLogin.setOnClickListener {
             val email = binding.editEmail.text
             val password = binding.editPassword.text
@@ -57,6 +72,7 @@ class LoginFragment : Fragment() {
             loginViewModel.select("$email", "$password")
             loginViewModel.userLive.observe(viewLifecycleOwner) {
                 if (it != null) {
+                    loginViewModel.changeCredential(binding.checkboxRicorda.isChecked)
                     loginViewModel.update()
                     findNavController().navigate(R.id.nav_graph_second_part)
                 }
@@ -64,4 +80,3 @@ class LoginFragment : Fragment() {
          }
        }
     }
-
