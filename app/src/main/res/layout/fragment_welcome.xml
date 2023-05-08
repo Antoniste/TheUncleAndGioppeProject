@@ -20,10 +20,11 @@
             app:layout_constraintGuide_percent="0.5" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             app:lottie_rawRes="@raw/cinema"
             app:lottie_autoPlay="true"
+            android:scaleType="centerCrop"
             app:lottie_repeatMode="reverse"
             app:lottie_loop="true"
             app:layout_constraintBottom_toTopOf="@id/guideline"
@@ -38,7 +39,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline">
-
+            <TextView
+                android:id="@+id/tvwelc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp"
+                android:gravity="center_horizontal"
+                android:text="Marvel Universe"
+                android:textColor="@color/white"
+                android:textSize="60sp"
+                android:fontFamily="@font/lob_regular"
+                android:layout_marginBottom="45dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/butWelcome" />
                 <Button
                     android:id="@+id/butWelcome"
                     android:layout_width="wrap_content"
@@ -52,7 +66,7 @@
                     android:textColorHint="@color/white"
                     android:textSize="26sp"
                     android:textStyle="italic"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="80dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

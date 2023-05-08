@@ -41,20 +41,26 @@ class SignUpFragment : Fragment() {
             binding.editEmail.doOnTextChanged { text, _, _, _ ->
                 binding.butLogin.isEnabled =
                     text.toString().isNotEmpty() && binding.editPassword.text.toString()
+                        .isNotEmpty() && binding.editName.text.toString()
                         .isNotEmpty()
             }
             binding.editPassword.doOnTextChanged { text, _, _, _ ->
                 binding.butLogin.isEnabled =
                     text.toString().isNotEmpty() && binding.editEmail.text.toString()
+                        .isNotEmpty() && binding.editName.text.toString()
+                        .isNotEmpty()
+            }
+            binding.editName.doOnTextChanged { text, _, _, _ ->
+                binding.butLogin.isEnabled =
+                    text.toString().isNotEmpty() && binding.editEmail.text.toString()
+                        .isNotEmpty() && binding.editPassword.text.toString()
                         .isNotEmpty()
             }
             binding.butLogin.setOnClickListener {
-                val email = binding.editEmail.text.toString()
-                val password = binding.editPassword.text.toString()
                 val keyboard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 keyboard.hideSoftInputFromWindow(binding.root.windowToken, 0)
                 lifecycleScope.launch {
-                    loginViewModel.insertUser(UserPorn(binding.editEmail.text.toString(), binding.editPassword.text.toString()))
+                    loginViewModel.insertUser(UserPorn(binding.editName.text.toString(), binding.editEmail.text.toString(), binding.editPassword.text.toString()))
                 }
                 findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
             }
