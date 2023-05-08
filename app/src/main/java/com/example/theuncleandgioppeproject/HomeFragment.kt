@@ -14,6 +14,7 @@ import com.example.theuncleandgioppeproject.model.ImageModel
 import com.example.theuncleandgioppeproject.utils.DataBoundListAdapter
 import com.example.theuncleandgioppeproject.viewModel.HardViewModel
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,6 +69,10 @@ class HomeFragment : Fragment() {
             set3DItem(true)
             setAlpha(true)
             setInfinite(false)
+        }
+        BottomSheetBehavior.from(binding.constraintBottomSheet).apply {
+            peekHeight=200
+            this.state=BottomSheetBehavior.STATE_COLLAPSED
         }
 
        /* binding.ironManMaterialButton.setOnClickListener{
