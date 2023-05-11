@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.theuncleandgioppeproject.R
 import com.example.theuncleandgioppeproject.databinding.ActivityMainBinding
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
-        navController = navHostFragment.navController
+            navController = navHostFragment.navController
 
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/biometricTest">
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.theuncleandgioppeproject.WelcomeFragment"
@@ -32,4 +32,9 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <include app:graph="@navigation/nav_graph_second_part" />
+    <fragment
+        android:id="@+id/biometricTest"
+        android:name="com.example.theuncleandgioppeproject.TestBiometric"
+        android:label="fragment_biometric_test"
+        tools:layout="@layout/fragment_biometric_test" />
 </navigation>
