@@ -1,10 +1,12 @@
 package com.example.theuncleandgioppeproject
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
@@ -24,7 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var adapterImage: RecyclerViewAdapterImage
     private val loginViewModel: LoginViewModel by activityViewModels()
     private val hardViewModel: HardViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,18 +33,32 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
-
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hardViewModel.getUser()
+        val bottomSheetBehavior=BottomSheetBehavior.from(binding.constraintBottomSheet)
         adapterRe = RecyclerViewAdapterHome()
         val imageList =ArrayList<ImageModel>()
-        imageList.add(ImageModel(R.drawable.ironman_paper_face_masks_01,"iron man"))
         imageList.add(ImageModel(R.drawable.spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts,"hulk"))
         imageList.add(ImageModel(R.drawable._58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent,"thanos"))
        /* binding.editSearch.doOnTextChanged { text, _, _, _ ->
             hardViewModel.
         }*/
+        bottomSheetBehavior.apply {
+            peekHeight=100
+            this.state=BottomSheetBehavior.STATE_EXPANDED
+
+        }
+        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if(newState==4)
+                    binding.constraintBottomSheet.isVisible=false
+            }
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        })
+
+
         adapterImage= RecyclerViewAdapterImage(object : DataBoundListAdapter.onItemClickListener {
             override fun onClick(name: String) {
                 hardViewModel.getIronManData(name)
@@ -70,11 +85,6 @@ class HomeFragment : Fragment() {
             setAlpha(true)
             setInfinite(false)
         }
-        BottomSheetBehavior.from(binding.constraintBottomSheet).apply {
-            peekHeight=200
-            this.state=BottomSheetBehavior.STATE_COLLAPSED
-        }
-
        /* binding.ironManMaterialButton.setOnClickListener{
             hardViewModel.getIronManData("iron man")
             hardViewModel.event.observe(viewLifecycleOwner) {
@@ -91,6 +101,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }*/
+
         hardViewModel.userName.observe(viewLifecycleOwner){
             binding.nameHome.text=it
         }
@@ -101,5 +112,8 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
+
 
 }

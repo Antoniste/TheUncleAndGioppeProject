@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -26,7 +27,7 @@
             android:id="@+id/CircleAvatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_margin="30dp"
+            android:layout_margin="15dp"
             android:background="@drawable/db_custom_button_welcome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -98,7 +99,7 @@
         <FrameLayout
             android:id="@+id/constraintBottomSheet"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="300dp"
             app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
             android:background="@drawable/db_bottom_sheet"
             >
