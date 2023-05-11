@@ -1,30 +1,30 @@
 package com.example.theuncleandgioppeproject
-
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDirections
-import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.databinding.FragmentLoginBinding
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val loginViewModel: LoginViewModel by activityViewModels()
-
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var executor: Executor
+    lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +32,70 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentLoginBinding.inflate(layoutInflater)
+        executor = ContextCompat.getMainExecutor(requireActivity())
+        biometricPrompt = BiometricPrompt(
+            requireActivity(),
+            executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    binding.authStatusTV.text = "Authentication Failed!"
+                    Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    binding.authStatusTV.text = "Authentication error $errString"
+                    Toast.makeText(
+                        requireContext(),
+                        "Authentication Error:$errString",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    binding.authStatusTV.text = "Authentication Succeded!"
+                    findNavController().navigate(R.id.nav_graph_second_part)
+                    Toast.makeText(requireContext(), "Authentication Succeded", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric Authentication")
+            .setSubtitle("Login using fingerprint authentication")
+            .setNegativeButtonText("use app Password instead")
+            .build()
+        binding.authBtn.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bottomSheetBehaviorLogin= BottomSheetBehavior.from(binding.constraintBottomSheet)
+        bottomSheetBehaviorLogin.apply {
+            peekHeight=100
+            this.state=BottomSheetBehavior.STATE_COLLAPSED
+        }
+        binding.butBiometric.setOnClickListener{
+            binding.constraintBottomSheet.visibility=View.VISIBLE
+            bottomSheetBehaviorLogin.state = BottomSheetBehavior.STATE_EXPANDED
+            bottomSheetBehaviorLogin.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    if (newState==BottomSheetBehavior.STATE_COLLAPSED) {
+                       binding.constraintBottomSheet.visibility=View.INVISIBLE
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                }
+            })
+
+
+        }
         if(loginViewModel.preferencesManager.credentialUser){
             loginViewModel.preferencesManager.userEmail.let {
                 binding.editEmail.setText(it)
