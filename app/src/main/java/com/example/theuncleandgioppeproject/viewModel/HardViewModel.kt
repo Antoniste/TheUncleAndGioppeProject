@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HardViewModel @Inject constructor(private var repository: UncleRepository) : ViewModel() {
-
+    var bottomSh=MutableLiveData<Boolean>(false)
     private val _event = MutableLiveData<List<List<ViewModelCardHome>>>()
     var event : LiveData<List<List<ViewModelCardHome>>> = _event
     val preferencesManager: PreferencesManager
@@ -23,6 +23,9 @@ class HardViewModel @Inject constructor(private var repository: UncleRepository)
     var userName=MutableLiveData<String>()
     fun getUser(){
         userName.value=preferencesManager.userName
+    }
+    fun bottomSheetMetod(boolean: Boolean){
+       bottomSh.value=!bottomSh.value!!
     }
 
     fun getIronManData(c: String) {
