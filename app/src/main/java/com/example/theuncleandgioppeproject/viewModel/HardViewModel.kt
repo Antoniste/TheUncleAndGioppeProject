@@ -24,9 +24,6 @@ class HardViewModel @Inject constructor(private var repository: UncleRepository)
     fun getUser(){
         userName.value=preferencesManager.userName
     }
-    fun bottomSheetMetod(boolean: Boolean){
-       bottomSh.value=!bottomSh.value!!
-    }
 
     fun getIronManData(c: String) {
         viewModelScope.launch {

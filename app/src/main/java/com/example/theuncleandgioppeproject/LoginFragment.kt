@@ -56,11 +56,19 @@ class LoginFragment : Fragment() {
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    binding.authStatusTV.text = "Authentication Succeded!"
                     loginViewModel.biometric()
-                    findNavController().navigate(R.id.nav_graph_second_part)
-                    Toast.makeText(requireContext(), "Authentication Succeded", Toast.LENGTH_SHORT)
-                        .show()
+                    loginViewModel.userLive.observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            loginViewModel.update()
+                            findNavController().navigate(R.id.nav_graph_second_part)
+                        }else{
+                            Toast.makeText(
+                                requireContext(),
+                                "Utente non trovato, registrati",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
