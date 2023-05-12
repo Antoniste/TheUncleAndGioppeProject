@@ -11,12 +11,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.databinding.FragmentLoginBinding
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executor
 import java.util.logging.Handler
@@ -66,15 +68,19 @@ class LoginFragment : Fragment() {
                             findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
                         }
                     }
-                    loginViewModel.userLive.observe(viewLifecycleOwner) {
-                        if (it ==null) {
-                            Toast.makeText(
-                                requireContext(),
-                                "Utente non trovato, registrati",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    lifecycleScope.launch {
+                        delay(1000)
+                        loginViewModel.userLive.observe(viewLifecycleOwner) {
+                            if (it ==null) {
+                                android.widget.Toast.makeText(
+                                    requireContext(),
+                                    "Utente non trovato, registrati",
+                                    android.widget.Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
                     }
+
                 }
             })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
