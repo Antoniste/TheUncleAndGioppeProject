@@ -64,11 +64,11 @@ class LoginFragment : Fragment() {
 
                     loginViewModel.biometric()
                     loginViewModel.userLive.observe(viewLifecycleOwner) {
+                        lifecycleScope.launch {
+                            delay(3000)
                         if (it != null) {
                             findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
                         }else{
-                            lifecycleScope.launch {
-                                delay(3000)
                                 Toast.makeText(
                                     requireContext(),
                                     "Utente non trovato, registrati",
