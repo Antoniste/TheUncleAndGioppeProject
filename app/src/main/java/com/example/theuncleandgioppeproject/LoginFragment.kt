@@ -66,14 +66,10 @@ class LoginFragment : Fragment() {
                     loginViewModel.userLive.observe(viewLifecycleOwner) {
                         if (it != null) {
                             findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
-                        }
-                    }
-                    lifecycleScope.launch {
-                        delay(3000)
-                    }
-                    loginViewModel.userLive.observe(viewLifecycleOwner) {
-                            if (it ==null) {
-                                android.widget.Toast.makeText(
+                        }else{
+                            lifecycleScope.launch {
+                                delay(3000)
+                                Toast.makeText(
                                     requireContext(),
                                     "Utente non trovato, registrati",
                                     android.widget.Toast.LENGTH_SHORT
@@ -81,6 +77,7 @@ class LoginFragment : Fragment() {
                             }
                         }
                     }
+                }
 
             })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
