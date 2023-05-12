@@ -69,8 +69,9 @@ class LoginFragment : Fragment() {
                         }
                     }
                     lifecycleScope.launch {
-                        delay(1000)
-                        loginViewModel.userLive.observe(viewLifecycleOwner) {
+                        delay(3000)
+                    }
+                    loginViewModel.userLive.observe(viewLifecycleOwner) {
                             if (it ==null) {
                                 android.widget.Toast.makeText(
                                     requireContext(),
@@ -81,7 +82,6 @@ class LoginFragment : Fragment() {
                         }
                     }
 
-                }
             })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
             .setTitle("Biometric Authentication")
