@@ -57,7 +57,7 @@ class LoginFragment : Fragment() {
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     binding.authStatusTV.text = "Authentication Succeded!"
-                    loginViewModel.update()
+                    loginViewModel.biometric()
                     findNavController().navigate(R.id.nav_graph_second_part)
                     Toast.makeText(requireContext(), "Authentication Succeded", Toast.LENGTH_SHORT)
                         .show()
