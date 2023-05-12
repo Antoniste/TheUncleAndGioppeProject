@@ -49,7 +49,6 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
         logShare.value=preferencesManager.isUserLogged
     }
     fun logout(){
-
         userLive.value=null
         preferencesManager.isUserLogged=false
         logShare.value=preferencesManager.isUserLogged
