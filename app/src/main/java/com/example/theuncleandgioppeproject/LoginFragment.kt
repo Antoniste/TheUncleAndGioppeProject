@@ -59,7 +59,7 @@ class LoginFragment : Fragment() {
                     loginViewModel.biometric()
                     loginViewModel.userLive.observe(viewLifecycleOwner) {
                         if (it != null) {
-                            findNavController().navigate(R.id.nav_graph_second_part)
+                            findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
                         }else{
                             Toast.makeText(
                                 requireContext(),
