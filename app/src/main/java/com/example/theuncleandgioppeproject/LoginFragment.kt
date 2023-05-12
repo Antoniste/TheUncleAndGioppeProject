@@ -16,8 +16,10 @@ import com.example.theuncleandgioppeproject.databinding.FragmentLoginBinding
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executor
+import java.util.logging.Handler
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -57,12 +59,15 @@ class LoginFragment : Fragment() {
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
+
                     loginViewModel.biometric()
                     loginViewModel.userLive.observe(viewLifecycleOwner) {
-                        runBlocking {if (it != null) {
-                             findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
-                         }}
-                        if (it==null){
+                        if (it != null) {
+                            findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
+                        }
+                    }
+                    loginViewModel.userLive.observe(viewLifecycleOwner) {
+                        if (it ==null) {
                             Toast.makeText(
                                 requireContext(),
                                 "Utente non trovato, registrati",
