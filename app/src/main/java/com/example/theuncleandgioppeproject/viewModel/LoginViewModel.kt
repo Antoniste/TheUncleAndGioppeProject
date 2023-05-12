@@ -39,7 +39,7 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
         }
     fun biometric(){
         viewModelScope.launch {
-            userLive.value = repository.selectFirst()
+            userLive.value = repository.selectFirst(0)
         }
         preferencesManager.isUserLogged=false
         preferencesManager.userPassword=userLive.value?.password
