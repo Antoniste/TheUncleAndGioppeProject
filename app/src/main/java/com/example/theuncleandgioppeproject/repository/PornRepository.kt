@@ -12,8 +12,8 @@ class PornRepository @Inject constructor(private var dao: DaoPorn) {
         dao.insert(user)
     }
 
-    suspend fun selectFirst(id:Int):UserPorn{
-        return dao.selectFirst(id)
+    suspend fun selectFirst():UserPorn{
+        return dao.selectFirst(1)
     }
    /* suspend fun update(log:Boolean,id:Int) {
         dao.update(log,id)
