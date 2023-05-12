@@ -16,6 +16,6 @@ interface DaoPorn {
 /*    @Query("UPDATE user_porn SET log=:log WHERE idUser=:id")
         suspend fun update(log:Boolean,id:Int)*/
 
-    @Query("SELECT * FROM user_porn WHERE idUser==0")
+    @Query("SELECT * FROM user_porn WHERE idUser=0")
     suspend fun selectFirst():UserPorn
 }
