@@ -19,9 +19,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executor
-import java.util.logging.Handler
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -30,6 +28,7 @@ class LoginFragment : Fragment() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var executor: Executor
     lateinit var promptInfo: BiometricPrompt.PromptInfo
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +68,7 @@ class LoginFragment : Fragment() {
                         if (it != null) {
                             findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
                         }else{
-                                Toast.makeText(
+                                 Toast.makeText(
                                     requireContext(),
                                     "Utente non trovato, registrati",
                                     android.widget.Toast.LENGTH_SHORT
@@ -107,7 +106,6 @@ class LoginFragment : Fragment() {
                        binding.constraintBottomSheet.visibility=View.INVISIBLE
                     }
                 }
-
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 }
             })
@@ -155,5 +153,5 @@ class LoginFragment : Fragment() {
                 }
             }
          }
-       }
-    }
+                }
+            }
