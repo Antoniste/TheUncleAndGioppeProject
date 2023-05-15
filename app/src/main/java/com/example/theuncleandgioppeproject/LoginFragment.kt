@@ -1,4 +1,5 @@
 package com.example.theuncleandgioppeproject
+
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,59 +32,53 @@ class LoginFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentLoginBinding.inflate(layoutInflater)
         executor = ContextCompat.getMainExecutor(requireActivity())
         biometricPrompt = BiometricPrompt(
-            requireActivity(),
-            executor,
-            object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationFailed() {
-                    super.onAuthenticationFailed()
-                    binding.authStatusTV.text = "Authentication Failed!"
-                    Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                requireActivity(),
+                executor,
+                object : BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationFailed() {
+                        super.onAuthenticationFailed()
+                        binding.authStatusTV.text = "Authentication Failed!"
+                        Toast.makeText(requireContext(), "Authentication Failed", Toast.LENGTH_SHORT)
+                                .show()
+                    }
 
-                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    super.onAuthenticationError(errorCode, errString)
-                    binding.authStatusTV.text = "Authentication error $errString"
-                    Toast.makeText(
-                        requireContext(),
-                        "Authentication Error:$errString",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                        super.onAuthenticationError(errorCode, errString)
+                        binding.authStatusTV.text = "Authentication error $errString"
+                        Toast.makeText(
+                                requireContext(),
+                                "Authentication Error:$errString",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                    }
 
-                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    super.onAuthenticationSucceeded(result)
+                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                        super.onAuthenticationSucceeded(result)
 
-                    loginViewModel.biometric()
-                    loginViewModel.userLive.observe(viewLifecycleOwner) {
-                        lifecycleScope.launch {
-                            delay(3000)
-                        if (it != null) {
-                            findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
-                        }else{
-                                 Toast.makeText(
-                                    requireContext(),
-                                    "Utente non trovato, registrati",
-                                    android.widget.Toast.LENGTH_SHORT
-                                ).show()
+                        loginViewModel.biometric()
+                        loginViewModel.userLive.observe(viewLifecycleOwner) {
+                            lifecycleScope.launch {
+                                if (it != null) {
+                                    findNavController().navigate(LoginFragmentDirections.actionGlobalToHomeFragment())
+                                }
                             }
                         }
                     }
-                }
 
-            })
+
+                })
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric Authentication")
-            .setSubtitle("Login using fingerprint authentication")
-            .setNegativeButtonText("use app Password instead")
-            .build()
+                .setTitle("Biometric Authentication")
+                .setSubtitle("Login using fingerprint authentication")
+                .setNegativeButtonText("use app Password instead")
+                .build()
         binding.authBtn.setOnClickListener {
             biometricPrompt.authenticate(promptInfo)
         }
@@ -92,34 +87,35 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val bottomSheetBehaviorLogin= BottomSheetBehavior.from(binding.constraintBottomSheet)
+        val bottomSheetBehaviorLogin = BottomSheetBehavior.from(binding.constraintBottomSheet)
         bottomSheetBehaviorLogin.apply {
-            peekHeight=100
-            this.state=BottomSheetBehavior.STATE_COLLAPSED
+            peekHeight = 100
+            this.state = BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.butBiometric.setOnClickListener{
-            binding.constraintBottomSheet.visibility=View.VISIBLE
+        binding.butBiometric.setOnClickListener {
+            binding.constraintBottomSheet.visibility = View.VISIBLE
             bottomSheetBehaviorLogin.state = BottomSheetBehavior.STATE_EXPANDED
             bottomSheetBehaviorLogin.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    if (newState==BottomSheetBehavior.STATE_COLLAPSED) {
-                       binding.constraintBottomSheet.visibility=View.INVISIBLE
+                    if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                        binding.constraintBottomSheet.visibility = View.INVISIBLE
                     }
                 }
+
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 }
             })
 
 
         }
-        if(loginViewModel.preferencesManager.credentialUser){
+        if (loginViewModel.preferencesManager.credentialUser) {
             loginViewModel.preferencesManager.userEmail.let {
                 binding.editEmail.setText(it)
             }
             loginViewModel.preferencesManager.userPassword.let {
                 binding.editPassword.setText(it)
             }
-            binding.checkboxRicorda.isChecked=loginViewModel.preferencesManager.credentialUser
+            binding.checkboxRicorda.isChecked = loginViewModel.preferencesManager.credentialUser
         }
 
 
@@ -128,16 +124,16 @@ class LoginFragment : Fragment() {
         }
         binding.editEmail.doOnTextChanged { text, _, _, _ ->
             binding.butLogin.isEnabled =
-                text.toString().isNotEmpty() && binding.editPassword.text.toString()
-                    .isNotEmpty()
+                    text.toString().isNotEmpty() && binding.editPassword.text.toString()
+                            .isNotEmpty()
         }
         binding.editPassword.doOnTextChanged { text, _, _, _ ->
             binding.butLogin.isEnabled =
-                text.toString().isNotEmpty() && binding.editEmail.text.toString()
-                    .isNotEmpty()
+                    text.toString().isNotEmpty() && binding.editEmail.text.toString()
+                            .isNotEmpty()
         }
-        if (binding.butLogin.text.isNotEmpty() && binding.editPassword.text.isNotEmpty()){
-            binding.butLogin.isEnabled=true
+        if (binding.butLogin.text.isNotEmpty() && binding.editPassword.text.isNotEmpty()) {
+            binding.butLogin.isEnabled = true
         }
         binding.butLogin.setOnClickListener {
             val email = binding.editEmail.text
@@ -152,6 +148,6 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(R.id.nav_graph_second_part)
                 }
             }
-         }
-                }
-            }
+        }
+    }
+}

@@ -21,6 +21,7 @@ class LoginViewModel @Inject constructor( var repository: PornRepository) : View
     var nameShare=MutableLiveData<String>()
 
     var userLive = MutableLiveData<UserPorn?>()
+
      fun select(email: String, password: String) {
          viewModelScope.launch {
         userLive.value = repository.select(email, password)
