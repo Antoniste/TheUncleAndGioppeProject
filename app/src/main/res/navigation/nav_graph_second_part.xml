@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_second_part"
     app:startDestination="@id/homeFragment">
-
+    <action
+        app:destination="@id/nav_graph"
+        android:id="@+id/actionGlobalToLoginFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true">
+    </action>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.theuncleandgioppeproject.HomeFragment"

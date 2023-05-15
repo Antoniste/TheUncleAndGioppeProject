@@ -123,7 +123,7 @@ class HomeFragment : Fragment() {
         binding.logout.setOnClickListener{
             loginViewModel.update()
             loginViewModel.logout()
-            findNavController().popBackStack(R.id.nav_graph,true)
+            findNavController().navigate(R.id.actionGlobalToLoginFragment)
         }
     }
 

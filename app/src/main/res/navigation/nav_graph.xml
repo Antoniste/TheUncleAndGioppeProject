@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/welcomeFragment">
+    <action
+        app:destination="@id/nav_graph_second_part"
+        android:id="@+id/actionGlobalToHomeFragment"
+        >
+    </action>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.theuncleandgioppeproject.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-
             android:id="@+id/action_welcomeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/welcomeFragment"
@@ -26,12 +30,6 @@
             app:destination="@id/signUpFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
-        <action
-            app:destination="@id/nav_graph_second_part"
-            android:id="@+id/actionGlobalToHomeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true">
-        </action>
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
