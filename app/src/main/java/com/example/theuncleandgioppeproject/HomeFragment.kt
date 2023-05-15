@@ -9,14 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
+import androidx.compose.ui.window.Dialog
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterImage
+import com.example.theuncleandgioppeproject.databinding.DialogAlertHomeExitBinding
 import com.example.theuncleandgioppeproject.databinding.FragmentHomeBinding
 import com.example.theuncleandgioppeproject.model.ImageModel
 import com.example.theuncleandgioppeproject.utils.DataBoundListAdapter
+import com.example.theuncleandgioppeproject.utils.PreferencesManager
 import com.example.theuncleandgioppeproject.viewModel.HardViewModel
 import com.example.theuncleandgioppeproject.viewModel.LoginViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -25,6 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var bindingDialog: DialogAlertHomeExitBinding
     private lateinit var adapterRe: RecyclerViewAdapterHome
     private lateinit var adapterImage: RecyclerViewAdapterImage
     private val loginViewModel: LoginViewModel by activityViewModels()
@@ -34,7 +40,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-
         return binding.root
     }
 
@@ -44,10 +49,12 @@ class HomeFragment : Fragment() {
         var doubleBackToExitPressedOnce=false
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-            if(doubleBackToExitPressedOnce){
-                requireActivity().finish()
+               if(doubleBackToExitPressedOnce){
+                val dialog=CustomDialogFragmentExit()
+                dialog.isCancelable=false
+                dialog.show(parentFragmentManager,"customDialog")
             }
-                doubleBackToExitPressedOnce = true
+                doubleBackToExitPressedOnce = !doubleBackToExitPressedOnce
             }
         })
         hardViewModel.getUser()
