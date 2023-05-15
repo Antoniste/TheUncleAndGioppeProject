@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.theuncleandgioppeproject.adapter.RecyclerViewAdapterHome
@@ -31,11 +29,9 @@ class HomeFragment : Fragment() {
     private lateinit var adapterImage: RecyclerViewAdapterImage
     private val loginViewModel: LoginViewModel by activityViewModels()
     private val hardViewModel: HardViewModel by activityViewModels()
-    private var doubleBackToExitPressedOnce = false
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
@@ -45,123 +41,90 @@ class HomeFragment : Fragment() {
     @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var doubleBackToExitPressedOnce=false
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+            if(doubleBackToExitPressedOnce){
+                requireActivity().finish()
+            }
+                doubleBackToExitPressedOnce = true
+            }
+        })
         hardViewModel.getUser()
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.constraintBottomSheet)
+        val bottomSheetBehavior=BottomSheetBehavior.from(binding.constraintBottomSheet)
         adapterRe = RecyclerViewAdapterHome()
-        val imageList = ArrayList<ImageModel>()
-        imageList.add(
-            ImageModel(
-                R.drawable.spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts,
-                "hulk"
-            )
-        )
-        imageList.add(
-            ImageModel(
-                R.drawable._58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent,
-                "thanos"
-            )
-        )
-        /* binding.editSearch.doOnTextChanged { text, _, _, _ ->
-             hardViewModel.
-         }*/
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (doubleBackToExitPressedOnce) {
-                        activity?.finish()
-                    } else {
-                        doubleBackToExitPressedOnce = true
-                        Toast.makeText(
-                            requireContext(),
-                            "Press back again to exit",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        Handler().postDelayed({
-                            doubleBackToExitPressedOnce = false
-                        }, 2000)
-                    }
-                }
-            })
-
-
-
-
-
-
-
+        val imageList =ArrayList<ImageModel>()
+        imageList.add(ImageModel(R.drawable.spider_man_face_mask_coloring_book_clip_art_spider_man_mask_cliparts,"hulk"))
+        imageList.add(ImageModel(R.drawable._58_1584724_thanos_comic_marvel_freetoedit_thanos_comic_png_transparent,"thanos"))
+       /* binding.editSearch.doOnTextChanged { text, _, _, _ ->
+            hardViewModel.
+        }*/
         bottomSheetBehavior.apply {
-            peekHeight = 100
-            this.state = BottomSheetBehavior.STATE_EXPANDED
+            peekHeight=100
+            this.state=BottomSheetBehavior.STATE_EXPANDED
+
         }
-        bottomSheetBehavior.addBottomSheetCallback(
-            object : BottomSheetBehavior.BottomSheetCallback() {
-                override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    if (newState == 4)
-                        binding.constraintBottomSheet.isVisible = false
-                }
 
-                override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-            })
+        bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if(newState==4)
+                    binding.constraintBottomSheet.isVisible=false
+            }
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+        })
 
 
-        adapterImage = RecyclerViewAdapterImage(
-            object : DataBoundListAdapter.onItemClickListener {
-                override fun onClick(name: String) {
-                    hardViewModel.getIronManData(name)
-                    hardViewModel.event.observe(viewLifecycleOwner) {
-                        adapterRe.apply {
-                            it?.let {
-                                it.forEach {
-                                    submitList(it)
-                                }
+        adapterImage= RecyclerViewAdapterImage(object : DataBoundListAdapter.onItemClickListener {
+            override fun onClick(name: String) {
+                hardViewModel.getIronManData(name)
+                hardViewModel.event.observe(viewLifecycleOwner) {
+                    adapterRe.apply {
+                        it?.let {
+                            it.forEach {
+                                submitList(it)
                             }
-                            notifyDataSetChanged()
                         }
-                        binding.recy.apply {
-                            adapter = adapterRe
-                        }
+                        notifyDataSetChanged()
                     }
-                }
-            })
-        adapterImage.apply{
+                    binding.recy.apply {
+                        adapter = adapterRe
+                    }
+            }}
+        })
+        adapterImage.apply {
             submitList(imageList)
         }
         binding.carouselRecyclerview.adapter = adapterImage
-        binding.carouselRecyclerview.apply{
+        binding.carouselRecyclerview.apply {
             set3DItem(true)
             setAlpha(true)
             setInfinite(false)
         }
-
-        /* binding.ironManMaterialButton.setOnClickListener{
-         hardViewModel.getIronManData("iron man")
-         hardViewModel.event.observe(viewLifecycleOwner) {
-             adapterRe.apply {
-                it?.let {
-                    it.forEach {
-                        submitList(it)
-                    }
+       /* binding.ironManMaterialButton.setOnClickListener{
+            hardViewModel.getIronManData("iron man")
+            hardViewModel.event.observe(viewLifecycleOwner) {
+                adapterRe.apply {
+                   it?.let {
+                       it.forEach {
+                           submitList(it)
+                       }
+                   }
+                    notifyDataSetChanged()
                 }
-                 notifyDataSetChanged()
-             }
-             binding.recy.apply {
-                 adapter = adapterRe
-             }
-         }
-     }*/
+                binding.recy.apply {
+                    adapter = adapterRe
+                }
+            }
+        }*/
 
-        hardViewModel.userName.observe(viewLifecycleOwner)
-        {
-            binding.nameHome.text = it
+        hardViewModel.userName.observe(viewLifecycleOwner){
+            binding.nameHome.text=it
         }
         binding.logout.setOnClickListener{
             loginViewModel.update()
             loginViewModel.logout()
-            findNavController().navigate(R.id.nav_graph)
+            findNavController().popBackStack(R.id.nav_graph,true)
         }
     }
+
 }

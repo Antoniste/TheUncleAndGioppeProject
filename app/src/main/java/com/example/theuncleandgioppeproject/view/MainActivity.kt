@@ -25,10 +25,5 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
             navController = navHostFragment.navController
 
-        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-              finish()
-            }
-        })
     }
 }
