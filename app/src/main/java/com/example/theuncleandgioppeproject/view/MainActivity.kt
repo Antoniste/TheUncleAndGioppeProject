@@ -2,6 +2,7 @@ package com.example.theuncleandgioppeproject.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.theuncleandgioppeproject.R
@@ -24,5 +25,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
             navController = navHostFragment.navController
 
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+              finish()
+            }
+        })
     }
 }
