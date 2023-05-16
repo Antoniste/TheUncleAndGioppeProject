@@ -1,7 +1,8 @@
 package com.example.theuncleandgioppeproject.core.network.base.network
 
 object Constants {
-
+    const val e=""
+     val NFC_READ_COMMAND= byteArrayOf(0x30.toByte(), 0x00.toByte())
     const val TS="1682584667000"
     const val BASE_URL= "https://gateway.marvel.com"
     const val API_KEY = "781fb826b12d89b527431ec48e0fce42"

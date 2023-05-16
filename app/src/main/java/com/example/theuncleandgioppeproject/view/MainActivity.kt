@@ -1,6 +1,8 @@
 package com.example.theuncleandgioppeproject.view
 
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.IntentFilter
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.NfcA
@@ -11,8 +13,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.theuncleandgioppeproject.R
 import com.example.theuncleandgioppeproject.databinding.ActivityMainBinding
-import com.example.theuncleandgioppeproject.utils.Constants.NFC_READ_COMMAND
 import android.nfc.*
+import com.example.theuncleandgioppeproject.core.network.base.network.Constants.NFC_READ_COMMAND
+import com.example.theuncleandgioppeproject.core.network.base.network.Constants.e
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         if (isConnected) {
             val receivedData: ByteArray = nfc.transceive(NFC_READ_COMMAND)
+
         }else{
         Log.e("ans", "Not connected")
     }
@@ -48,4 +52,32 @@ override fun onCreate(savedInstanceState: Bundle?) {
     navController = navHostFragment.navController
 
 }
+    private fun enableForegroundDispatch(activity: AppCompatActivity, adapter: NfcAdapter?) {
+        val intent = Intent(activity.applicationContext, activity.javaClass)
+        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+        val pendingIntent = PendingIntent.getActivity(
+            activity.applicationContext,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        val filters = arrayOfNulls<IntentFilter>(1)
+        val techList = arrayOf<Array<String>>()
+        filters[0] = IntentFilter()
+        with(filters[0]) {
+            this?.addAction(NfcAdapter.ACTION_NDEF_DISCOVERED)
+            this?.addCategory(Intent.CATEGORY_DEFAULT)
+            try {
+                this?.addDataType("text/plain")
+            } catch (ex: IntentFilter.MalformedMimeTypeException) {
+                throw RuntimeException(e)
+            }
+        }
+        adapter?.enableForegroundDispatch(activity, pendingIntent, filters, techList)
+    }
+    override fun onResume() {
+        super.onResume()
+        enableForegroundDispatch(this, this.nfcAdapter)
+    }
+
 }
