@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -17,13 +23,20 @@
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
-            <meta-data android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/techlist" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/techlist" />
+
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
         </activity>
     </application>
 
