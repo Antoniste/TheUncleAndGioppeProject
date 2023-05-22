@@ -33,6 +33,8 @@ class WelcomeFragment : Fragment() {
         binding.butWelcome.setOnClickListener {
             findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
         }
-
+binding.button.setOnClickListener{
+    findNavController().navigate(R.id.action_welcomeFragment_to_writeData2)
+}
     }
 }
